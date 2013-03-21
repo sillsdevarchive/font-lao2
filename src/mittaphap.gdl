@@ -1,0 +1,30 @@
+
+table(glyph)
+cTone = (g0ec8 g0ec9 g0eca g0ecb)
+endtable
+
+table(substitution)
+pass(1)
+_ g0eb3 > g0ecd:a g0eb2:a / _ [cTone cTone?]? _=a;
+endpass
+endtable
+
+#define opt0(x)
+#define opt1(x) [x]?
+#define opt2(x) [opt1(x) x]?
+
+#define P(x) cTakes##x##Dia c##x##Dia {attach {to = @1; at = x##S; with = x##M}; user1 = 1} / ^ _ _ {user1 == 0};
+#define PN(x,n) cTakes##x##Dia c##x##Dia {attach {to = @1; at = x##S; with = x##M}; user1 = 1} / ^ _ opt##n(cnTakes##x##Dia) _ {user1 == 0};
+
+table(positioning)
+pass(1)
+
+P(tone)
+P(cabove)
+P(udia)
+cTakesudiaDia cudiaDia {attach {to=@1; at=udiaS; with=udiaM}; user1=1} / ^ _ [ccbelowDia cldiaDia?]? _{user1==0};
+P(lstack)
+P(cbelow)
+
+endpass
+endtable
